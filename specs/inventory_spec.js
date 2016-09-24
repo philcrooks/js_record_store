@@ -42,16 +42,16 @@ describe( 'Inventory', function() {
   it( 'lists the inventory', function() {
     assert.strictEqual(inventory.toString(),
      //12345678901234567890123456789012345678901234567890123456789012345678901234567890 
-      "The Beatles          Rubber Soul                                10   100.00\n" +
-      "The Beatles          Revolver                                   10   100.00\n" +
-      "The Beatles          Sgt. Pepper's Lonely Hearts Club Band      10   100.00\n" +
-      "The Beatles          Abbey Road                                 10   100.00\n" +
-      "The Rolling Stones   Let It Bleed                               10   100.00\n" +
-      "The Rolling Stones   Sticky Fingers                             10   100.00\n" +
-      "The Rolling Stones   Exile on Main Street                       10   100.00\n" +
-      "Bob Dylan            Another Side of Bob Dylan                  10   100.00\n" + 
-      "Bob Dylan            Blood on the Tracks                        10   100.00\n" +
-      "Bob Dylan            Before the Flood                           10   100.00\n");
+      "   1. The Beatles          Rubber Soul                                10   100.00\n" +
+      "   2. The Beatles          Revolver                                   10   100.00\n" +
+      "   3. The Beatles          Sgt. Pepper's Lonely Hearts Club Band      10   100.00\n" +
+      "   4. The Beatles          Abbey Road                                 10   100.00\n" +
+      "   5. The Rolling Stones   Let It Bleed                               10   100.00\n" +
+      "   6. The Rolling Stones   Sticky Fingers                             10   100.00\n" +
+      "   7. The Rolling Stones   Exile on Main Street                       10   100.00\n" +
+      "   8. Bob Dylan            Another Side of Bob Dylan                  10   100.00\n" + 
+      "   9. Bob Dylan            Blood on the Tracks                        10   100.00\n" +
+      "  10. Bob Dylan            Before the Flood                           10   100.00\n");
   })
 
 })

@@ -1,9 +1,11 @@
+var layout = require ( './layout');
 // var _ = requre( 'lodash' );
 
 Inventory.prototype.toString = function() {
   var string = "";
+  var count = 1;
   this._inventory.forEach(function(item) {
-    string += item.toString() + "\n";
+    string += layout(count++, 4, true) + ". " + item.toString() + "\n";
   });
   return string;
 }
