@@ -10,7 +10,7 @@ describe( 'Inventory', function() {
     inventory = new Inventory();
     var record = new Record("The Beatles", "Rubber Soul", 10.00);
     inventory.add(new StockItem(record, 10));
-    record = new Record("The Beatles", "Revoler", 10.00);
+    record = new Record("The Beatles", "Revolver", 10.00);
     inventory.add(new StockItem(record, 10));
     record = new Record("The Beatles", "Sgt. Pepper's Lonely Hearts Club Band", 10.00);
     inventory.add(new StockItem(record, 10));
@@ -18,7 +18,7 @@ describe( 'Inventory', function() {
     inventory.add(new StockItem(record, 10));
     record = new Record("The Rolling Stones", "Let It Bleed", 10.00);
     inventory.add(new StockItem(record, 10));
-    record = new Record("The Rolling Stones", "Stick Fingers", 10.00);
+    record = new Record("The Rolling Stones", "Sticky Fingers", 10.00);
     inventory.add(new StockItem(record, 10));
     record = new Record("The Rolling Stones", "Exile on Main Street", 10.00);
     inventory.add(new StockItem(record, 10));
@@ -40,7 +40,18 @@ describe( 'Inventory', function() {
 
   // Create a method that lists the inventory.
   it( 'lists the inventory', function() {
-    assert.strictEqual(inventory.toString(), "");
+    assert.strictEqual(inventory.toString(),
+     //12345678901234567890123456789012345678901234567890123456789012345678901234567890 
+      "The Beatles          Rubber Soul                                10   100.00\n" +
+      "The Beatles          Revolver                                   10   100.00\n" +
+      "The Beatles          Sgt. Pepper's Lonely Hearts Club Band      10   100.00\n" +
+      "The Beatles          Abbey Road                                 10   100.00\n" +
+      "The Rolling Stones   Let It Bleed                               10   100.00\n" +
+      "The Rolling Stones   Sticky Fingers                             10   100.00\n" +
+      "The Rolling Stones   Exile on Main Street                       10   100.00\n" +
+      "Bob Dylan            Another Side of Bob Dylan                  10   100.00\n" + 
+      "Bob Dylan            Blood on the Tracks                        10   100.00\n" +
+      "Bob Dylan            Before the Flood                           10   100.00\n");
   })
 
 })

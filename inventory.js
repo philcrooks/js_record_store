@@ -1,13 +1,15 @@
-Inventory.prototype.toString = function() {
+// var _ = requre( 'lodash' );
 
+Inventory.prototype.toString = function() {
+  var string = "";
+  this._inventory.forEach(function(item) {
+    string += item.toString() + "\n";
+  });
+  return string;
 }
 
 Inventory.prototype.add = function(stockItem) {
   this._inventory.push(stockItem);
-}
-
-Inventory.prototype.toString = function() {
-
 }
 
 function Inventory() {

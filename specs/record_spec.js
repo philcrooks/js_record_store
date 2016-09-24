@@ -22,7 +22,7 @@ describe ( 'Record', function() {
   })
 
   it ( 'converts to s string', function() {
-    assert.strictEqual(record.toString(), "T.Rex                Bolan Boogie        ");
+    assert.strictEqual(record.toString(), "T.Rex                Bolan Boogie                            ");
   })
 
 })

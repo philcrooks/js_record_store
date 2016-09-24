@@ -1,7 +1,7 @@
 var layout = require ( './layout');
 
 Record.prototype.toString = function() {
-  return layout(this._artist, 20, false) + " " + layout(this._title, 20, false);
+  return layout(this._artist, 20, false) + " " + layout(this._title, 40, false);
 }
 
 function Record(artist, title, price) {
