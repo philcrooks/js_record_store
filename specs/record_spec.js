@@ -10,18 +10,16 @@ describe ( 'Record', function() {
   })
 
   it( 'has an artist', function() {
-    assert.strictEqual("T.Rex", record.artist);
+    assert.strictEqual(record.artist, "T.Rex");
   })
 
   it ( 'has a title', function () {
-    assert.strictEqual("Bolan Boogie", record.title);
+    assert.strictEqual(record.title, "Bolan Boogie");
   })
 
   it ( 'has a price', function () {
-    assert.strictEqual(2.10, record.price);
+    assert.strictEqual(record.price, 2.10);
   })
-
-  // Create some new records
 
 })
 
