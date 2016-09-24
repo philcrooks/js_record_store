@@ -26,4 +26,10 @@ describe ( 'Stock Item', function() {
     assert.strictEqual(stockItem.toString(), "T.Rex                Bolan Boogie                               10    21.00");
   })
 
+  it( 'can be copied', function(){
+    var copy = stockItem.copy();
+    assert.deepEqual(copy, stockItem);
+    assert.notStrictEqual(copy, stockItem);
+  })
+
 })

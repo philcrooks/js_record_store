@@ -1,6 +1,7 @@
 var assert = require( 'assert' );
 var Record = require( '../record' );
 var StockItem = require( '../stock_item' );
+var Inventory = require( '../inventory' );
 var RecordStore = require( '../record_store');
 
 describe( 'Record Store', function() {
@@ -12,7 +13,7 @@ describe( 'Record Store', function() {
 
     // Create some new records and stock items
     inventory.add(new StockItem(record, 10));
-    record = new Record("The Beatles", "Revoler", 10.00);
+    record = new Record("The Beatles", "Revolver", 10.00);
     inventory.add(new StockItem(record, 10));
     record = new Record("The Beatles", "Sgt. Pepper's Lonely Hearts Club Band", 10.00);
     inventory.add(new StockItem(record, 10));
@@ -20,7 +21,7 @@ describe( 'Record Store', function() {
     inventory.add(new StockItem(record, 10));
     record = new Record("The Rolling Stones", "Let It Bleed", 10.00);
     inventory.add(new StockItem(record, 10));
-    record = new Record("The Rolling Stones", "Stick Fingers", 10.00);
+    record = new Record("The Rolling Stones", "Sticky Fingers", 10.00);
     inventory.add(new StockItem(record, 10));
     record = new Record("The Rolling Stones", "Exile on Main Street", 10.00);
     inventory.add(new StockItem(record, 10));
@@ -32,13 +33,60 @@ describe( 'Record Store', function() {
     inventory.add(new StockItem(record, 10));
 
     // Create a RecordStore that has a name, city and multiple records in it's inventory
-    recordStore = new RecordStore("Splat", "Uig", inventory);
+    recordStore = new RecordStore("Splat!", "Inverness", inventory);
+  })
+
+  it ( 'has a name', function (){
+    assert.strictEqual(recordStore.name, "Splat!");
+  })
+
+  it ( 'has a city', function() {
+    assert.strictEqual(recordStore.city, "Inverness");
+  })
+
+  it ( 'has inventory', function() {
+    assert.strictEqual(recordStore.inventorySize, 10);
   })
 
   // Give the RecordStore a balance i.e. cash in bank.
+  it ( 'has no cash in the bank', function() {
+    assert.strictEqual(recordStore.cash, 0);
+  })
+
+  it ( 'has cash in the bank', function() {
+    recordStore.cash = 5000;
+    assert.strictEqual(recordStore.cash, 5000);
+  })
+
   // Add some records to your RecordStore.
+  // it ( 'can add inventory for new record', function () {
+
+  // })
+
+  // it ( 'can add inventory for a stocked record', function () {
+
+  // })
+
   // Create a method that lists the inventory.
-  // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
+  it ( 'can list the inventory', function () {
+    assert.strictEqual(recordStore.inventoryList,
+      "   1. The Beatles          Rubber Soul                                10   100.00\n" +
+      "   2. The Beatles          Revolver                                   10   100.00\n" +
+      "   3. The Beatles          Sgt. Pepper's Lonely Hearts Club Band      10   100.00\n" +
+      "   4. The Beatles          Abbey Road                                 10   100.00\n" +
+      "   5. The Rolling Stones   Let It Bleed                               10   100.00\n" +
+      "   6. The Rolling Stones   Sticky Fingers                             10   100.00\n" +
+      "   7. The Rolling Stones   Exile on Main Street                       10   100.00\n" +
+      "   8. Bob Dylan            Another Side of Bob Dylan                  10   100.00\n" + 
+      "   9. Bob Dylan            Blood on the Tracks                        10   100.00\n" +
+      "  10. Bob Dylan            Before the Flood                           10   100.00\n");
+  })
+
   // Create a method that reports on the financial situation of the store. Cash and value of inventory.
+  it ( 'can report on financial position', function() {
+    assert.strictEqual(recordStore.totalAssets, 6000);
+  })
+
+  // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
 
 })

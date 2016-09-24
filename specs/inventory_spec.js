@@ -54,4 +54,10 @@ describe( 'Inventory', function() {
       "  10. Bob Dylan            Before the Flood                           10   100.00\n");
   })
 
+  it( 'can be copied', function(){
+    var copy = inventory.copy();
+    assert.deepEqual(copy, inventory);
+    assert.notStrictEqual(copy, inventory);
+  })
+
 })

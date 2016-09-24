@@ -25,5 +25,11 @@ describe ( 'Record', function() {
     assert.strictEqual(record.toString(), "T.Rex                Bolan Boogie                            ");
   })
 
+  it ( 'can be copied', function() {
+    var copy = record.copy();
+    assert.deepEqual(copy, record);
+    assert.notStrictEqual(copy, record);
+  })
+
 })
 

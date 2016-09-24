@@ -10,8 +10,16 @@ Inventory.prototype.toString = function() {
   return string;
 }
 
+Inventory.prototype.copy = function() {
+  var inventory = new Inventory();
+  for (var i of this._inventory) {
+    inventory.add(i.copy());
+  }
+  return inventory;
+}
+
 Inventory.prototype.add = function(stockItem) {
-  this._inventory.push(stockItem);
+  this._inventory.push(stockItem.copy());
 }
 
 function Inventory() {
