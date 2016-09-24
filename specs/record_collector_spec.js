@@ -41,6 +41,13 @@ describe ( 'Record Collector', function(){
     assert.strictEqual(recordCollector.cash, 2.90);
   })
 
+  it ( "can't sell a record it doesn't own", function() {
+    var record = new Record("T.Rex", "Bolan Boogie", 4.10);
+    assert.strictEqual(recordCollector.sell(record), null);
+    assert.strictEqual(recordCollector.collectionSize, 1);
+    assert.strictEqual(recordCollector.cash, 2.90);
+  })
+
   it ( 'can sell a record', function() {
     var record = recordCollector._collection[0];
     assert.strictEqual(recordCollector.sell(record), record);
