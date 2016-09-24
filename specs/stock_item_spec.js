@@ -22,4 +22,8 @@ describe ( 'Stock Item', function() {
     assert.strictEqual(stockItem.value, 21.0);
   })
 
+  it ( 'converts to s string', function() {
+    assert.strictEqual(stockItem.toString(), "T.Rex                Bolan Boogie           10    21.00");
+  })
+
 })

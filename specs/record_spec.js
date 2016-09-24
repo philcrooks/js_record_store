@@ -21,5 +21,9 @@ describe ( 'Record', function() {
     assert.strictEqual(record.price, 2.10);
   })
 
+  it ( 'converts to s string', function() {
+    assert.strictEqual(record.toString(), "T.Rex                Bolan Boogie        ");
+  })
+
 })
 

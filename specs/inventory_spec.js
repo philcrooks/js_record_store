@@ -1,16 +1,14 @@
 var assert = require( 'assert' );
 var Record = require( '../record' );
 var StockItem = require( '../stock_item' );
-var RecordStore = require( '../record_store');
+var Inventory = require( '../inventory' );
 
-describe( 'Record Store', function() {
-  var recordStore;
+describe( 'Inventory', function() {
+  var inventory;
 
   before(function() {
-    var inventory = new Inventory();
+    inventory = new Inventory();
     var record = new Record("The Beatles", "Rubber Soul", 10.00);
-
-    // Create some new records and stock items
     inventory.add(new StockItem(record, 10));
     record = new Record("The Beatles", "Revoler", 10.00);
     inventory.add(new StockItem(record, 10));
@@ -30,15 +28,19 @@ describe( 'Record Store', function() {
     inventory.add(new StockItem(record, 10));
     record = new Record("Bob Dylan", "Before the Flood", 10.00);
     inventory.add(new StockItem(record, 10));
-
-    // Create a RecordStore that has a name, city and multiple records in it's inventory
-    recordStore = new RecordStore("Splat", "Uig", inventory);
   })
 
-  // Give the RecordStore a balance i.e. cash in bank.
-  // Add some records to your RecordStore.
+  it( 'has the right number of stock items', function() {
+    assert.strictEqual(inventory.size, 10);
+  })
+
+  it( 'has the right value', function() {
+    assert.strictEqual(inventory.value, 1000.0);
+  })
+
   // Create a method that lists the inventory.
-  // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
-  // Create a method that reports on the financial situation of the store. Cash and value of inventory.
+  it( 'lists the inventory', function() {
+    assert.strictEqual(inventory.toString(), "");
+  })
 
 })
