@@ -59,13 +59,27 @@ describe( 'Record Store', function() {
   })
 
   // Add some records to your RecordStore.
-  // it ( 'can add inventory for new record', function () {
+  it ( 'can add inventory for new record', function () {
+    recordStore.inventoryAdd("The Beatles", "Help!", 9.50, 10);
+    assert.deepEqual(recordStore._inventory._inventory[10],
+      {_item: {_artist: "The Beatles", _title: "Help!", _price: 9.50}, _quantity: 10});
+  })
 
-  // })
+  it ( "won't add new stock item for old record", function () {
+    recordStore.inventoryAdd("The Beatles", "Revolver", 9.50, 10);
+    assert.strictEqual(recordStore.inventorySize, 11)
+  })
 
-  // it ( 'can add inventory for a stocked record', function () {
 
-  // })
+  it ( 'can add inventory for a stocked record', function () {
+    recordStore.inventoryUpdate("the rolling stones", "exile on main street", 12);
+    assert.strictEqual(recordStore._inventory._inventory[6].quantity, 12);
+  })
+
+  it ( "won't change inventory if stocked record not found", function () {
+    recordStore.inventoryUpdate("the rolling stones", "aftermath", 12);
+    assert.strictEqual(recordStore.inventorySize, 11)
+  })
 
   // Create a method that lists the inventory.
   it ( 'can list the inventory', function () {
@@ -76,15 +90,16 @@ describe( 'Record Store', function() {
       "   4. The Beatles          Abbey Road                                 10   100.00\n" +
       "   5. The Rolling Stones   Let It Bleed                               10   100.00\n" +
       "   6. The Rolling Stones   Sticky Fingers                             10   100.00\n" +
-      "   7. The Rolling Stones   Exile on Main Street                       10   100.00\n" +
+      "   7. The Rolling Stones   Exile on Main Street                       12   120.00\n" +
       "   8. Bob Dylan            Another Side of Bob Dylan                  10   100.00\n" + 
       "   9. Bob Dylan            Blood on the Tracks                        10   100.00\n" +
-      "  10. Bob Dylan            Before the Flood                           10   100.00\n");
+      "  10. Bob Dylan            Before the Flood                           10   100.00\n" +
+      "  11. The Beatles          Help!                                      10    95.00\n");
   })
 
   // Create a method that reports on the financial situation of the store. Cash and value of inventory.
   it ( 'can report on financial position', function() {
-    assert.strictEqual(recordStore.totalAssets, 6000);
+    assert.strictEqual(recordStore.totalAssets, 6115);
   })
 
   // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold

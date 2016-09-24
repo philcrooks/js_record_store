@@ -22,14 +22,27 @@ describe ( 'Stock Item', function() {
     assert.strictEqual(stockItem.value, 21.0);
   })
 
+  it ( 'can update quantity', function(){
+    stockItem.quantity = 12;
+    assert.strictEqual(stockItem.quantity, 12);
+  })
+
   it ( 'converts to s string', function() {
-    assert.strictEqual(stockItem.toString(), "T.Rex                Bolan Boogie                               10    21.00");
+    assert.strictEqual(stockItem.toString(), "T.Rex                Bolan Boogie                               12    25.20");
   })
 
   it( 'can be copied', function(){
     var copy = stockItem.copy();
     assert.deepEqual(copy, stockItem);
     assert.notStrictEqual(copy, stockItem);
+  })
+
+  it ( 'has an artist name', function() {
+    assert.strictEqual(stockItem.artist, "T.Rex");
+  })
+
+  it ( 'has an album title', function() {
+    assert.strictEqual(stockItem.title, "Bolan Boogie");
   })
 
 })

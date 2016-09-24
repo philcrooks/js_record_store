@@ -18,6 +18,17 @@ Inventory.prototype.copy = function() {
   return inventory;
 }
 
+Inventory.prototype.findByName = function(artist, title) {
+  var lowerCaseArtist = artist.toLowerCase();
+  var lowerCaseTitle = title.toLowerCase();
+  for (var i of this._inventory) {
+    if ((i.artist.toLowerCase() === lowerCaseArtist) && (i.title.toLowerCase() === lowerCaseTitle)) {
+      return i;
+    }
+  }
+  return null;
+}
+
 Inventory.prototype.add = function(stockItem) {
   this._inventory.push(stockItem.copy());
 }

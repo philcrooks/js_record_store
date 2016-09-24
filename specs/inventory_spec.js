@@ -60,4 +60,16 @@ describe( 'Inventory', function() {
     assert.notStrictEqual(copy, inventory);
   })
 
+  it( "can't find item by artist/title", function() {
+    var stockItem = inventory.findByName("Bob Dylan", "Blood on the Tapes");
+    assert.strictEqual(stockItem, null);
+
+  })
+
+  it( 'can find item by artist/title', function() {
+    var stockItem = inventory.findByName("Bob Dylan", "Blood on the Tracks");
+    assert.notStrictEqual(stockItem, null);
+    assert.strictEqual(stockItem, inventory._inventory[8]);
+  })
+
 })
