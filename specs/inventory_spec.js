@@ -61,15 +61,27 @@ describe( 'Inventory', function() {
   })
 
   it( "can't find item by artist/title", function() {
-    var stockItem = inventory.findByName("Bob Dylan", "Blood on the Tapes");
+    var stockItem = inventory.findStockByName("Bob Dylan", "Blood on the Tapes");
     assert.strictEqual(stockItem, null);
 
   })
 
   it( 'can find item by artist/title', function() {
-    var stockItem = inventory.findByName("Bob Dylan", "Blood on the Tracks");
+    var stockItem = inventory.findStockByName("Bob Dylan", "Blood on the Tracks");
     assert.notStrictEqual(stockItem, null);
     assert.strictEqual(stockItem, inventory._inventory[8]);
+  })
+
+  it( "can't find record by artist/title", function() {
+    var record = inventory.findRecordByName("Bob Dylan", "Blood on the Tapes");
+    assert.strictEqual(record, null);
+
+  })
+
+  it( 'can find record by artist/title', function() {
+    var record = inventory.findRecordByName("Bob Dylan", "Blood on the Tracks");
+    assert.notStrictEqual(record, null);
+    assert.strictEqual(record, inventory._inventory[8]._item);
   })
 
 })

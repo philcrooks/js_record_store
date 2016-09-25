@@ -1,5 +1,5 @@
 RecordCollector.prototype.buy = function(record) {
-  if (this._cash > record.price) {
+  if (this._cash >= record.price) {
     this._cash -= record.price;
     this._collection.push(record.copy());
     return true;

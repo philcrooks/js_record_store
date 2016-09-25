@@ -18,7 +18,7 @@ Inventory.prototype.copy = function() {
   return inventory;
 }
 
-Inventory.prototype.findByName = function(artist, title) {
+Inventory.prototype.findStockByName = function(artist, title) {
   var lowerCaseArtist = artist.toLowerCase();
   var lowerCaseTitle = title.toLowerCase();
   for (var i of this._inventory) {
@@ -26,6 +26,12 @@ Inventory.prototype.findByName = function(artist, title) {
       return i;
     }
   }
+  return null;
+}
+
+Inventory.prototype.findRecordByName = function(artist, title) {
+  var stockItem = this.findStockByName(artist, title);
+  if (stockItem !== null) return stockItem._item;
   return null;
 }
 

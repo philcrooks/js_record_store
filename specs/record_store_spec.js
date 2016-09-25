@@ -3,6 +3,7 @@ var Record = require( '../record' );
 var StockItem = require( '../stock_item' );
 var Inventory = require( '../inventory' );
 var RecordStore = require( '../record_store');
+var RecordCollector = require( '../record_collector')
 
 describe( 'Record Store', function() {
   var recordStore;
@@ -103,5 +104,18 @@ describe( 'Record Store', function() {
   })
 
   // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
+  it( 'can sell a record', function() {
+    var assets = recordStore.totalAssets;
+    var record = recordStore.findRecord("The Rolling Stones", "Sticky Fingers");
+    assert.deepEqual({_artist: "The Rolling Stones", _title: "Sticky Fingers", _price: 10.00}, recordStore.sell(record));
+    assert.strictEqual(recordStore._inventory._inventory[5].quantity, 9);
+    assert.strictEqual(recordStore.totalAssets, assets);
+  })
+
+  it( 'can sell to a RecordCollector', function() {
+    var collector = new RecordCollector();
+    collector.cash = 10.00;
+    assert.strictEqual(collector.buy(recordStore.sell(recordStore.findRecord("The Rolling Stones", "Sticky Fingers"))), true);
+  })
 
 })

@@ -2,17 +2,31 @@ var StockItem = require( './stock_item' );
 var Record = require( './record' );
 
 RecordStore.prototype.inventoryUpdate = function(artist, album, quantity) {
-  var stockItem = this._inventory.findByName(artist, album);
+  var stockItem = this._inventory.findStockByName(artist, album);
   if (stockItem !== null) {
     stockItem.quantity = quantity; 
   }
 }
 
 RecordStore.prototype.inventoryAdd = function(artist, album, price, quantity) {
-  var stockItem = this._inventory.findByName(artist, album);
+  var stockItem = this._inventory.findStockByName(artist, album);
   if (stockItem === null) {
     this._inventory.add(new StockItem(new Record(artist, album, price), quantity));
   }
+}
+
+RecordStore.prototype.sell = function(record) {
+  var stockItem = this._inventory.findStockByName(record.artist, record.title);
+  if ((stockItem !== null) && (stockItem.quantity > 0)) {
+    stockItem.quantity -= 1;
+    this.cash += stockItem._item.price;
+    return stockItem._item.copy()
+  }
+  return null;
+}
+
+RecordStore.prototype.findRecord = function(artist, album) {
+  return this._inventory.findRecordByName(artist, album).copy();
 }
 
 function RecordStore (name, city, inventory) {
