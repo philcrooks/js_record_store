@@ -9,6 +9,7 @@ describe( 'Record Store', function() {
   var recordStore;
 
   before(function() {
+    Record.resetId();
     var inventory = new Inventory();
     var record = new Record("The Beatles", "Rubber Soul", 10.00);
 
@@ -63,7 +64,7 @@ describe( 'Record Store', function() {
   it ( 'can add inventory for new record', function () {
     recordStore.inventoryAdd("The Beatles", "Help!", 9.50, 10);
     assert.deepEqual(recordStore._inventory._inventory[10],
-      {_item: {_artist: "The Beatles", _title: "Help!", _price: 9.50}, _quantity: 10});
+      {_item: {_artist: "The Beatles", _title: "Help!", _price: 9.50, _id: 11}, _quantity: 10});
   })
 
   it ( "won't add new stock item for old record", function () {
@@ -107,7 +108,7 @@ describe( 'Record Store', function() {
   it( 'can sell a record', function() {
     var assets = recordStore.totalAssets;
     var record = recordStore.findRecord("The Rolling Stones", "Sticky Fingers");
-    assert.deepEqual({_artist: "The Rolling Stones", _title: "Sticky Fingers", _price: 10.00}, recordStore.sell(record));
+    assert.deepEqual({_artist: "The Rolling Stones", _title: "Sticky Fingers", _price: 10.00, _id: 6}, recordStore.sell(record));
     assert.strictEqual(recordStore._inventory._inventory[5].quantity, 9);
     assert.strictEqual(recordStore.totalAssets, assets);
   })

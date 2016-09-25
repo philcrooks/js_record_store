@@ -6,12 +6,13 @@ describe ( 'Stock Item', function() {
   var stockItem;
 
   before(function() {
+    Record.resetId();
     var record = new Record("T.Rex", "Bolan Boogie", 2.10);
     stockItem = new StockItem(record, 10);
   })
 
   it ( 'has an item', function() {
-    assert.deepEqual(stockItem.item, {_artist: "T.Rex", _title: "Bolan Boogie", _price: 2.10});
+    assert.deepEqual(stockItem.item, {_artist: "T.Rex", _title: "Bolan Boogie", _price: 2.10, _id: 1});
   })
 
   it ( 'has a quantity', function() {

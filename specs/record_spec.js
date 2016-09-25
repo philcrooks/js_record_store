@@ -5,6 +5,7 @@ describe ( 'Record', function() {
   var record;
 
   before(function() {
+    Record.resetId();
     // Create a constructor to create Record objects with artist, title, price
     record = new Record("T.Rex", "Bolan Boogie", 2.10);
   })
@@ -29,6 +30,10 @@ describe ( 'Record', function() {
     var copy = record.copy();
     assert.deepEqual(copy, record);
     assert.notStrictEqual(copy, record);
+  })
+
+  it ( 'has an id', function() {
+    assert.strictEqual(record.id, 1);
   })
 
 })
