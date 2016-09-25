@@ -19,6 +19,7 @@ function StockItem( item, quantity ) {
   Object.defineProperty(this, "value", { get: function () { return this._item.price * this._quantity } });
   Object.defineProperty(this, "artist", { get: function () { return this._item.artist } });
   Object.defineProperty(this, "title", { get: function () { return this._item.title } });
+  Object.defineProperty(this, "id", { get: function () { return this._item.id } });
 }
 
 module.exports = StockItem;

@@ -29,11 +29,27 @@ Inventory.prototype.findStockByName = function(artist, title) {
   return null;
 }
 
+Inventory.prototype.findStockById = function(id) {
+  for (var i of this._inventory) {
+    if (i.id === id) {
+      return i;
+    }
+  }
+  return null;
+}
+
 Inventory.prototype.findRecordByName = function(artist, title) {
   var stockItem = this.findStockByName(artist, title);
   if (stockItem !== null) return stockItem._item;
   return null;
 }
+
+Inventory.prototype.findRecordById = function(id) {
+  var stockItem = this.findStockById(id);
+  if (stockItem !== null) return stockItem._item;
+  return null;
+} 
+
 
 Inventory.prototype.add = function(stockItem) {
   this._inventory.push(stockItem.copy());

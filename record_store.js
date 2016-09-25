@@ -16,7 +16,7 @@ RecordStore.prototype.inventoryAdd = function(artist, album, price, quantity) {
 }
 
 RecordStore.prototype.sell = function(record) {
-  var stockItem = this._inventory.findStockByName(record.artist, record.title);
+  var stockItem = this._inventory.findStockById(record.id);
   if ((stockItem !== null) && (stockItem.quantity > 0)) {
     stockItem.quantity -= 1;
     this.cash += stockItem._item.price;
