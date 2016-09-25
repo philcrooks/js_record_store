@@ -114,9 +114,14 @@ describe( 'Record Store', function() {
   })
 
   it( 'can sell to a RecordCollector', function() {
+    var assets = recordStore.totalAssets;
     var collector = new RecordCollector();
     collector.cash = 10.00;
     assert.strictEqual(collector.buy(recordStore.sell(recordStore.findRecord("The Rolling Stones", "Sticky Fingers"))), true);
+    assert.strictEqual(collector.collectionSize, 1);
+    assert.strictEqual(collector.cash, 0);
+    assert.strictEqual(recordStore._inventory._inventory[5].quantity, 8);
+    assert.strictEqual(recordStore.totalAssets, assets);
   })
 
 })
